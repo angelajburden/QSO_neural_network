@@ -158,7 +158,7 @@ def sigmoidGradient(z):
     return np.multiply(x, (1.-x))
     
 def validationCurve(X, y, Xval, yval, input_layer_size, hidden_layer_size,num_labels, it_no):
-    lambda_vec = np.array(([0.02]))#[0.008], [0.01], [0.02], [0.03],
+    lambda_vec = np.array(([0.5],[0.008], [0.01], [0.02], [0.03], [1],[5]))
     error_train = np.zeros((lambda_vec.shape[0], 1))
     error_val = np.zeros((lambda_vec.shape[0], 1))
     for i in range(0,lambda_vec.shape[0]):
