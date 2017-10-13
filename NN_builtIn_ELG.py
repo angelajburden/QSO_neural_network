@@ -10,7 +10,8 @@ import readin as rdin
 # Setup parameters
 input_layer_size  = 10;  #colors(u-i) *4, color error *5, g*1
 hidden_layer_size = 200;   
-num_labels = 1;         
+num_labels = 1; 
+alphaval = 0.001        
 reload(NNp)                     
 
 # Load Training Data
@@ -44,7 +45,7 @@ Xt =df_test.iloc[:, np.r_[4, 8:18]].values
 X_test = Xt[:,:-1]
 y_test = Xt[:,-1:]
 
-clf = MLPClassifier(activation='logistic',solver='lbfgs', alpha=0.02, hidden_layer_sizes=(hidden_layer_size, 2),verbose=True, random_state=1)
+clf = MLPClassifier(activation='logistic',solver='adam', alpha=alphaval, hidden_layer_sizes=(hidden_layer_size, 2),verbose=True, random_state=1)
 clf.fit(X, y)
 b = clf.predict(X_test)
 prob = clf.predict_proba(X_test)
