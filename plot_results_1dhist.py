@@ -17,9 +17,9 @@ y=df[:,-1]
 maskPLO = np.zeros(X.shape[0], bool) | (X[:, -1] == 0)
 maskQSO = np.zeros(X.shape[0], bool) | (X[:, -1] == 1)
 mask_TP = np.zeros(X.shape[0], bool) | ((y>= 0.5) & (X[:, -1] == 1)) #valnn=0 TP
-mask_FN = np.zeros(X.shape[0], bool) | ((y<0.5) & (X[:, -1] == 1))   #valnn=1 FN
+mask_FN = np.zeros(X.shape[0], bool) | ((y<0.5) & (X[:, -1] == 1))   #valnn=1 FP
 mask_TN = np.zeros(X.shape[0], bool) | ((y<0.5) & (X[:, -1] == 0))   #valnn=2 TN
-mask_FP = np.zeros(X.shape[0], bool) | ((y>=0.5) & (X[:, -1] == 0))  #valnn=3 FP
+mask_FP = np.zeros(X.shape[0], bool) | ((y>=0.5) & (X[:, -1] == 0))  #valnn=3 FN
 
 #bin locations
 valx = [0, 1, 2, 3, 4, 5]
@@ -47,10 +47,10 @@ plt.hist(y[mask_TN], \
          ec='red', fc='none', lw=1.5, histtype='step', label='TN' )
 plt.hist(y[mask_FP], \
          bins=np.arange(0.-0.02,1. + 0.02, 0.02), \
-         ec='black', fc='none', lw=1.5, histtype='step', label='FP' )
+         ec='black', fc='none', lw=1.5, histtype='step', label='FN' )
 plt.hist(y[mask_FN], \
          bins=np.arange(0.-0.02,1. + 0.02, 0.02), \
-         ec='green', fc='none', lw=1.5, histtype='step', label='FN' )
+         ec='green', fc='none', lw=1.5, histtype='step', label='FP' )
 
 
 plt.title("Results of NN on test set") 
